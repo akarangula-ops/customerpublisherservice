@@ -1,22 +1,24 @@
 package com.pkglobal.producer.customerpublisherservice.domain;
 
-import java.util.Objects;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
-import org.springframework.lang.NonNull;
-import org.threeten.bp.OffsetDateTime;
+import java.util.Objects;
+import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import org.springframework.validation.annotation.Validated;
+import org.threeten.bp.OffsetDateTime;
 
-/**
- * Customer
- */
+/** Customer */
 @Validated
-//@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-03-17T09:38:54.954Z")
-
-
-public class Customer   {
+@javax.annotation.Generated(
+    value = "io.swagger.codegen.languages.SpringCodegen",
+    date = "2021-03-17T09:38:54.954Z")
+public class Customer {
   @JsonProperty("customerNumber")
   private String customerNumber = null;
 
@@ -41,41 +43,6 @@ public class Customer   {
   @JsonProperty("email")
   private String email = null;
 
-  /**
-   * Gets or Sets customerStatus
-   */
-  public enum CustomerStatusEnum {
-    OPEN("open"),
-    
-    CLOSE("close"),
-    
-    SUSPENDED("suspended"),
-    
-    RESTORED("restored");
-
-    private String value;
-
-    CustomerStatusEnum(String value) {
-      this.value = value;
-    }
-
-    @Override
-    @JsonValue
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static CustomerStatusEnum fromValue(String text) {
-      for (CustomerStatusEnum b : CustomerStatusEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-  }
-
   @JsonProperty("customerStatus")
   private CustomerStatusEnum customerStatus = null;
 
@@ -89,12 +56,15 @@ public class Customer   {
 
   /**
    * Get customerNumber
+   *
    * @return customerNumber
-  **/
+   */
   @ApiModelProperty(required = true, value = "")
-  @NonNull
-
-
+  @NotNull(message = "The field customerNumber is required")
+  @Pattern(
+      regexp = "^[a-zA-Z0-9]*$",
+      message = "The field customerNumber is invalid. It should be alphanumeric")
+  @Size(max = 10, message = "The field customerNumber is invalid. Maximum size should be 10")
   public String getCustomerNumber() {
     return customerNumber;
   }
@@ -110,12 +80,16 @@ public class Customer   {
 
   /**
    * Get firstName
+   *
    * @return firstName
-  **/
+   */
   @ApiModelProperty(required = true, value = "")
-  @NonNull
-
-
+  @NotNull(message = "The field firstName is required")
+  @Size(
+      min = 10,
+      max = 50,
+      message =
+          "The field firstName is invalid. The field firstName must be a string with minimum and maximum lengths of 10 and 50")
   public String getFirstName() {
     return firstName;
   }
@@ -131,11 +105,16 @@ public class Customer   {
 
   /**
    * Get lastname
+   *
    * @return lastname
-  **/
-  @ApiModelProperty(value = "")
-
-
+   */
+  @ApiModelProperty(required = true, value = "")
+  @NotNull(message = "The field lastName is required")
+  @Size(
+      min = 10,
+      max = 50,
+      message =
+          "The field lastName is invalid. The field lasName must be a string with minimum and maximum lengths of 10 and 50")
   public String getLastname() {
     return lastname;
   }
@@ -151,12 +130,15 @@ public class Customer   {
 
   /**
    * Get birthdate
+   *
    * @return birthdate
-  **/
-  @ApiModelProperty(value = "")
-
-  @Validated
-
+   */
+  @ApiModelProperty(required = true, value = "")
+  @NotNull(message = "The field birthDate is required")
+  @Pattern(
+      regexp = "^\\d{2}-\\d{2}-\\d{4}$",
+      message =
+          "The field birthDate is invalid. The field birthDate should be in format DD-MM-YYYY")
   public OffsetDateTime getBirthdate() {
     return birthdate;
   }
@@ -172,12 +154,11 @@ public class Customer   {
 
   /**
    * Get country
+   *
    * @return country
-  **/
+   */
   @ApiModelProperty(required = true, value = "")
-  @NonNull
-
-
+  @NotNull(message = "The field country is required")
   public String getCountry() {
     return country;
   }
@@ -193,12 +174,15 @@ public class Customer   {
 
   /**
    * Get countryCode
+   *
    * @return countryCode
-  **/
+   */
   @ApiModelProperty(required = true, value = "")
-  @NonNull
-
-
+  @NotNull(message = "The field country is required")
+  @Size(
+      max = 2,
+      message =
+          "The field country code is valid. The field country code must be a string with maximum length 2")
   public String getCountryCode() {
     return countryCode;
   }
@@ -214,12 +198,15 @@ public class Customer   {
 
   /**
    * Get mobileNumber
+   *
    * @return mobileNumber
-  **/
+   */
   @ApiModelProperty(required = true, value = "")
-  @NonNull
-
-
+  @NotNull(message = "The field mobile number is required")
+  @Pattern(
+      regexp = "/[2-9]{2}\\d{8}/",
+      message =
+          "The field mobile number is invalid. The field mbile number should be numebrs with maximum 10 digits")
   public Integer getMobileNumber() {
     return mobileNumber;
   }
@@ -235,11 +222,18 @@ public class Customer   {
 
   /**
    * Get email
+   *
    * @return email
-  **/
-  @ApiModelProperty(value = "")
-
-
+   */
+  @ApiModelProperty(required = true, value = "")
+  @NotNull(message = "The field email number is required")
+  @Email(
+      regexp = ".+@.+\\..+",
+      message = "The field email is invalid. The field email should be of pattern abc@gmail.com")
+  @Size(
+      max = 50,
+      message =
+          "The field email is invalid. The field email should be a string with maximum size 50")
   public String getEmail() {
     return email;
   }
@@ -255,12 +249,11 @@ public class Customer   {
 
   /**
    * Get customerStatus
+   *
    * @return customerStatus
-  **/
+   */
   @ApiModelProperty(required = true, value = "")
-  @NonNull
-
-
+  @NotNull
   public CustomerStatusEnum getCustomerStatus() {
     return customerStatus;
   }
@@ -276,13 +269,12 @@ public class Customer   {
 
   /**
    * Get address
+   *
    * @return address
-  **/
+   */
   @ApiModelProperty(required = true, value = "")
-  @NonNull
-
-  @Validated
-
+  @NotNull
+  @Valid
   public Address getAddress() {
     return address;
   }
@@ -290,7 +282,6 @@ public class Customer   {
   public void setAddress(Address address) {
     this.address = address;
   }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -301,28 +292,38 @@ public class Customer   {
       return false;
     }
     Customer customer = (Customer) o;
-    return Objects.equals(this.customerNumber, customer.customerNumber) &&
-        Objects.equals(this.firstName, customer.firstName) &&
-        Objects.equals(this.lastname, customer.lastname) &&
-        Objects.equals(this.birthdate, customer.birthdate) &&
-        Objects.equals(this.country, customer.country) &&
-        Objects.equals(this.countryCode, customer.countryCode) &&
-        Objects.equals(this.mobileNumber, customer.mobileNumber) &&
-        Objects.equals(this.email, customer.email) &&
-        Objects.equals(this.customerStatus, customer.customerStatus) &&
-        Objects.equals(this.address, customer.address);
+    return Objects.equals(this.customerNumber, customer.customerNumber)
+        && Objects.equals(this.firstName, customer.firstName)
+        && Objects.equals(this.lastname, customer.lastname)
+        && Objects.equals(this.birthdate, customer.birthdate)
+        && Objects.equals(this.country, customer.country)
+        && Objects.equals(this.countryCode, customer.countryCode)
+        && Objects.equals(this.mobileNumber, customer.mobileNumber)
+        && Objects.equals(this.email, customer.email)
+        && Objects.equals(this.customerStatus, customer.customerStatus)
+        && Objects.equals(this.address, customer.address);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(customerNumber, firstName, lastname, birthdate, country, countryCode, mobileNumber, email, customerStatus, address);
+    return Objects.hash(
+        customerNumber,
+        firstName,
+        lastname,
+        birthdate,
+        country,
+        countryCode,
+        mobileNumber,
+        email,
+        customerStatus,
+        address);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Customer {\n");
-    
+
     sb.append("    customerNumber: ").append(toIndentedString(customerNumber)).append("\n");
     sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
     sb.append("    lastname: ").append(toIndentedString(lastname)).append("\n");
@@ -338,8 +339,7 @@ public class Customer   {
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(java.lang.Object o) {
     if (o == null) {
@@ -347,5 +347,37 @@ public class Customer   {
     }
     return o.toString().replace("\n", "\n    ");
   }
-}
 
+  /** Gets or Sets customerStatus */
+  public enum CustomerStatusEnum {
+    OPEN("open"),
+
+    CLOSE("close"),
+
+    SUSPENDED("suspended"),
+
+    RESTORED("restored");
+
+    private String value;
+
+    CustomerStatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonCreator
+    public static CustomerStatusEnum fromValue(String text) {
+      for (CustomerStatusEnum b : CustomerStatusEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    @Override
+    @JsonValue
+    public String toString() {
+      return String.valueOf(value);
+    }
+  }
+}

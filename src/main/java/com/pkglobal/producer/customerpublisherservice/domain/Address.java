@@ -1,19 +1,18 @@
 package com.pkglobal.producer.customerpublisherservice.domain;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
-import org.springframework.lang.NonNull;
+import java.util.Objects;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import org.springframework.validation.annotation.Validated;
 
-/**
- * Address
- */
+/** Address */
 @Validated
-//@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-03-17T09:38:54.954Z")
-
-
-public class Address   {
+@javax.annotation.Generated(
+    value = "io.swagger.codegen.languages.SpringCodegen",
+    date = "2021-03-17T09:38:54.954Z")
+public class Address {
   @JsonProperty("addressLine1")
   private String addressLine1 = null;
 
@@ -33,12 +32,15 @@ public class Address   {
 
   /**
    * Get addressLine1
+   *
    * @return addressLine1
-  **/
+   */
   @ApiModelProperty(required = true, value = "")
-  @NonNull
-
-
+  @NotNull(message = "The field addressLine1 is required")
+  @Size(
+      max = 50,
+      message =
+          "The field addressline1 is invalid. The field addressLine1 should be string with maximum size 50")
   public String getAddressLine1() {
     return addressLine1;
   }
@@ -54,11 +56,10 @@ public class Address   {
 
   /**
    * Get addressLine2
+   *
    * @return addressLine2
-  **/
+   */
   @ApiModelProperty(value = "")
-
-
   public String getAddressLine2() {
     return addressLine2;
   }
@@ -74,11 +75,10 @@ public class Address   {
 
   /**
    * Get street
+   *
    * @return street
-  **/
+   */
   @ApiModelProperty(value = "")
-
-
   public String getStreet() {
     return street;
   }
@@ -94,11 +94,15 @@ public class Address   {
 
   /**
    * Get postalCode
+   *
    * @return postalCode
-  **/
-  @ApiModelProperty(value = "")
-
-
+   */
+  @ApiModelProperty(required = true, value = "")
+  @NotNull(message = "The field postal code is required")
+  @Size(
+      max = 5,
+      message =
+          "The field postal code is invalid. The field postal code should be string with maximum size 5")
   public Integer getPostalCode() {
     return postalCode;
   }
@@ -106,7 +110,6 @@ public class Address   {
   public void setPostalCode(Integer postalCode) {
     this.postalCode = postalCode;
   }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -117,10 +120,10 @@ public class Address   {
       return false;
     }
     Address address = (Address) o;
-    return Objects.equals(this.addressLine1, address.addressLine1) &&
-        Objects.equals(this.addressLine2, address.addressLine2) &&
-        Objects.equals(this.street, address.street) &&
-        Objects.equals(this.postalCode, address.postalCode);
+    return Objects.equals(this.addressLine1, address.addressLine1)
+        && Objects.equals(this.addressLine2, address.addressLine2)
+        && Objects.equals(this.street, address.street)
+        && Objects.equals(this.postalCode, address.postalCode);
   }
 
   @Override
@@ -132,7 +135,7 @@ public class Address   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Address {\n");
-    
+
     sb.append("    addressLine1: ").append(toIndentedString(addressLine1)).append("\n");
     sb.append("    addressLine2: ").append(toIndentedString(addressLine2)).append("\n");
     sb.append("    street: ").append(toIndentedString(street)).append("\n");
@@ -142,8 +145,7 @@ public class Address   {
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(java.lang.Object o) {
     if (o == null) {
@@ -152,4 +154,3 @@ public class Address   {
     return o.toString().replace("\n", "\n    ");
   }
 }
-

@@ -1,19 +1,17 @@
 package com.pkglobal.producer.customerpublisherservice.domain;
 
-import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
-import org.springframework.lang.NonNull;
+import java.util.Objects;
+import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
-/**
- * CustomerFailureResponse
- */
+/** CustomerFailureResponse */
 @Validated
-//@javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2021-03-17T09:38:54.954Z")
-
-
-public class CustomerFailureResponse   {
+@javax.annotation.Generated(
+    value = "io.swagger.codegen.languages.SpringCodegen",
+    date = "2021-03-17T09:38:54.954Z")
+public class CustomerFailureResponse {
   @JsonProperty("status")
   private String status = null;
 
@@ -27,12 +25,11 @@ public class CustomerFailureResponse   {
 
   /**
    * Get status
+   *
    * @return status
-  **/
+   */
   @ApiModelProperty(required = true, value = "")
-  @NonNull
-
-
+  @NotNull
   public String getStatus() {
     return status;
   }
@@ -48,11 +45,10 @@ public class CustomerFailureResponse   {
 
   /**
    * Get message
+   *
    * @return message
-  **/
+   */
   @ApiModelProperty(value = "")
-
-
   public String getMessage() {
     return message;
   }
@@ -60,7 +56,6 @@ public class CustomerFailureResponse   {
   public void setMessage(String message) {
     this.message = message;
   }
-
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -71,8 +66,8 @@ public class CustomerFailureResponse   {
       return false;
     }
     CustomerFailureResponse customerFailureResponse = (CustomerFailureResponse) o;
-    return Objects.equals(this.status, customerFailureResponse.status) &&
-        Objects.equals(this.message, customerFailureResponse.message);
+    return Objects.equals(this.status, customerFailureResponse.status)
+        && Objects.equals(this.message, customerFailureResponse.message);
   }
 
   @Override
@@ -84,7 +79,7 @@ public class CustomerFailureResponse   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CustomerFailureResponse {\n");
-    
+
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
@@ -92,8 +87,7 @@ public class CustomerFailureResponse   {
   }
 
   /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
+   * Convert the given object to string with each line indented by 4 spaces (except the first line).
    */
   private String toIndentedString(java.lang.Object o) {
     if (o == null) {
@@ -102,4 +96,3 @@ public class CustomerFailureResponse   {
     return o.toString().replace("\n", "\n    ");
   }
 }
-

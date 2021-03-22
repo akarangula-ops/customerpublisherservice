@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
+import java.util.Date;
 import java.util.Objects;
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
@@ -11,7 +12,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import org.springframework.validation.annotation.Validated;
-import org.threeten.bp.OffsetDateTime;
 
 /** Customer */
 @Validated
@@ -29,7 +29,7 @@ public class Customer {
   private String lastname = null;
 
   @JsonProperty("birthdate")
-  private OffsetDateTime birthdate = null;
+  private Date birthdate = null;
 
   @JsonProperty("country")
   private String country = null;
@@ -38,7 +38,7 @@ public class Customer {
   private String countryCode = null;
 
   @JsonProperty("mobileNumber")
-  private Integer mobileNumber = null;
+  private String mobileNumber = null;
 
   @JsonProperty("email")
   private String email = null;
@@ -123,7 +123,7 @@ public class Customer {
     this.lastname = lastname;
   }
 
-  public Customer birthdate(OffsetDateTime birthdate) {
+  public Customer birthdate(Date birthdate) {
     this.birthdate = birthdate;
     return this;
   }
@@ -139,11 +139,11 @@ public class Customer {
       regexp = "^\\d{2}-\\d{2}-\\d{4}$",
       message =
           "The field birthDate is invalid. The field birthDate should be in format DD-MM-YYYY")
-  public OffsetDateTime getBirthdate() {
+  public Date getBirthdate() {
     return birthdate;
   }
 
-  public void setBirthdate(OffsetDateTime birthdate) {
+  public void setBirthdate(Date birthdate) {
     this.birthdate = birthdate;
   }
 
@@ -191,7 +191,7 @@ public class Customer {
     this.countryCode = countryCode;
   }
 
-  public Customer mobileNumber(Integer mobileNumber) {
+  public Customer mobileNumber(String mobileNumber) {
     this.mobileNumber = mobileNumber;
     return this;
   }
@@ -207,11 +207,11 @@ public class Customer {
       regexp = "/[2-9]{2}\\d{8}/",
       message =
           "The field mobile number is invalid. The field mbile number should be numebrs with maximum 10 digits")
-  public Integer getMobileNumber() {
+  public String getMobileNumber() {
     return mobileNumber;
   }
 
-  public void setMobileNumber(Integer mobileNumber) {
+  public void setMobileNumber(String mobileNumber) {
     this.mobileNumber = mobileNumber;
   }
 

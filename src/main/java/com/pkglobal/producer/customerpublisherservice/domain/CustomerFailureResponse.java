@@ -10,13 +10,16 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 @javax.annotation.Generated(
     value = "io.swagger.codegen.languages.SpringCodegen",
-    date = "2021-03-17T09:38:54.954Z")
+    date = "2021-03-22T05:23:03.279Z")
 public class CustomerFailureResponse {
   @JsonProperty("status")
-  private String status = null;
+  private String status = "error";
 
   @JsonProperty("message")
   private String message = null;
+
+  @JsonProperty("errorType")
+  private String errorType = "GeneralException";
 
   public CustomerFailureResponse status(String status) {
     this.status = status;
@@ -57,6 +60,25 @@ public class CustomerFailureResponse {
     this.message = message;
   }
 
+  public CustomerFailureResponse errorType(String errorType) {
+    this.errorType = errorType;
+    return this;
+  }
+
+  /**
+   * Get errorType
+   *
+   * @return errorType
+   */
+  @ApiModelProperty(value = "")
+  public String getErrorType() {
+    return errorType;
+  }
+
+  public void setErrorType(String errorType) {
+    this.errorType = errorType;
+  }
+
   @Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
@@ -67,12 +89,13 @@ public class CustomerFailureResponse {
     }
     CustomerFailureResponse customerFailureResponse = (CustomerFailureResponse) o;
     return Objects.equals(this.status, customerFailureResponse.status)
-        && Objects.equals(this.message, customerFailureResponse.message);
+        && Objects.equals(this.message, customerFailureResponse.message)
+        && Objects.equals(this.errorType, customerFailureResponse.errorType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, message);
+    return Objects.hash(status, message, errorType);
   }
 
   @Override
@@ -82,6 +105,7 @@ public class CustomerFailureResponse {
 
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    errorType: ").append(toIndentedString(errorType)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -10,10 +10,10 @@ import org.springframework.validation.annotation.Validated;
 @Validated
 @javax.annotation.Generated(
     value = "io.swagger.codegen.languages.SpringCodegen",
-    date = "2021-03-17T09:38:54.954Z")
+    date = "2021-03-22T05:23:03.279Z")
 public class CustomerSuccessResponse {
   @JsonProperty("status")
-  private String status = null;
+  private String status = "success";
 
   @JsonProperty("message")
   private String message = null;

@@ -161,7 +161,7 @@ definitions:
         default: "error"
       message:
         type: "string"
-      error_type:
+      errorType:
         type: "string"
         default: "GeneralException"
     xml:

@@ -26,9 +26,27 @@ paths:
         - "application/json"
         - "application/xml"
       produces:
-        - "application/xml"
         - "application/json"
+        - "application/xml"
       parameters:
+        - name: "Authorization"
+          in: "header"
+          description: "Token for Authorization"
+          required: true
+          type: "string"
+          default: "Authorization"
+        - name: "Transaction-Id"
+          in: "header"
+          description: "transaction Id"
+          required: true
+          type: "string"
+          default: "transactionId"
+        - name: "Activity-Id"
+          in: "header"
+          description: "Unique Identifier for the request"
+          required: true
+          type: "string"
+          default: "d7845679-4578-8972-7234-bg589374"
         - in: "body"
           name: "body"
           description: "Consume the request and publish it to Kafka"
@@ -37,15 +55,25 @@ paths:
             $ref: "#/definitions/Customer"
       responses:
         "200":
-          "description": "Success Response"
+          description: "Success Response"
+          schema:
+            $ref: "#/definitions/CustomerSuccessResponse"
         "400":
-          "description": "Failure Response"
+          description: "Failure Response"
+          schema:
+            $ref: "#/definitions/CustomerFailureResponse"
         "401":
-          "description": "Failure Response"
+          description: "Failure Response"
+          schema:
+            $ref: "#/definitions/CustomerFailureResponse"
         "404":
-          "description": "Failure Response"
+          description: "Failure Response"
+          schema:
+            $ref: "#/definitions/CustomerFailureResponse"
         "500":
-          "description": "Failure Response"
+          description: "Failure Response"
+          schema:
+            $ref: "#/definitions/CustomerFailureResponse"
 securityDefinitions:
   customer_auth:
     type: "oauth2"
@@ -118,6 +146,7 @@ definitions:
     properties:
       status:
         type: "string"
+        default: "success"
       message:
         type: "string"
     xml:
@@ -129,8 +158,12 @@ definitions:
     properties:
       status:
         type: "string"
+        default: "error"
       message:
         type: "string"
+      error_type:
+        type: "string"
+        default: "GeneralException"
     xml:
       name: "CustomerFailureResponse"
 externalDocs:

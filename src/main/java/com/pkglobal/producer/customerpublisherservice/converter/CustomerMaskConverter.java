@@ -12,12 +12,12 @@ public class CustomerMaskConverter {
 
     customer = new Customer();
 
-    if (request.getCustomerNumber()!=null && !request.getCustomerNumber().isEmpty()) {
+    if (!request.getCustomerNumber().isEmpty()) {
       String customerNumber = request.getCustomerNumber().substring(0, request.getCustomerNumber().length() - 4) + "****";
       customer.setCustomerNumber(customerNumber);
     }
 
-    if (request.getEmail()!=null && !request.getEmail().isEmpty()) {
+    if (!request.getEmail().isEmpty()) {
       int length = request.getEmail().length();
       String email = "****"+request.getEmail().substring(4, length);
       customer.setEmail(email);

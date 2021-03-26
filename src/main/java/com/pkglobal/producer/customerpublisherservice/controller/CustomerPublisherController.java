@@ -56,10 +56,10 @@ public class CustomerPublisherController {
           @RequestHeader(value = "Application-Id", required = true) String applicationId,
           @Valid @RequestBody Customer body) {
     String requestBody = ObjectMapperUtils.returnJsonFromObject(customerMaskConverter.convert(body));
-    log.info("received the message the api : " + requestBody);
+    log.info("received the message the api : " , requestBody);
     CustomerSuccessResponse customerSuccessResponse = customerPublisherService.publishToKafka(ObjectMapperUtils.returnJsonFromObject(body), authorization);
     String customerResponseJson = ObjectMapperUtils.returnJsonFromObject(customerSuccessResponse);
-    log.info("sending the response to api : " + customerResponseJson);
+    log.info("sending the response to api : " , customerResponseJson);
     return new ResponseEntity<>(customerSuccessResponse, HttpStatus.OK);
   }
 }

@@ -1,6 +1,5 @@
 package com.pkglobal.producer.customerpublisherservice.service;
 
-import com.pkglobal.producer.customerpublisherservice.domain.Customer;
 import com.pkglobal.producer.customerpublisherservice.domain.CustomerSuccessResponse;
 import com.pkglobal.producer.customerpublisherservice.exception.TokenException;
 import org.springframework.beans.factory.annotation.Autowired;

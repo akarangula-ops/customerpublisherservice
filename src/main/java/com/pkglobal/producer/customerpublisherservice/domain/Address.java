@@ -23,7 +23,7 @@ public class Address {
   private String street = null;
 
   @JsonProperty("postalCode")
-  private Integer postalCode = null;
+  private String postalCode = null;
 
   public Address addressLine1(String addressLine1) {
     this.addressLine1 = addressLine1;
@@ -87,7 +87,7 @@ public class Address {
     this.street = street;
   }
 
-  public Address postalCode(Integer postalCode) {
+  public Address postalCode(String postalCode) {
     this.postalCode = postalCode;
     return this;
   }
@@ -98,16 +98,13 @@ public class Address {
    * @return postalCode
    */
   @ApiModelProperty(required = true, value = "")
-  @NotNull(message = "The field postal code is required")
-  @Size(
-      max = 5,
-      message =
-          "The field postal code is invalid. The field postal code should be string with maximum size 5")
-  public Integer getPostalCode() {
+  @NotNull(message = "This field is required")
+  @Size(max = 5, message = "The field postalCodex must be a string with maximum lenght of 5.")
+  public String getPostalCode() {
     return postalCode;
   }
 
-  public void setPostalCode(Integer postalCode) {
+  public void setPostalCode(String postalCode) {
     this.postalCode = postalCode;
   }
 

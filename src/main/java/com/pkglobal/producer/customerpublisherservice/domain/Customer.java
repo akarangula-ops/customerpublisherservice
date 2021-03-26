@@ -1,6 +1,7 @@
 package com.pkglobal.producer.customerpublisherservice.domain;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.annotations.ApiModelProperty;
@@ -135,10 +136,7 @@ public class Customer {
    */
   @ApiModelProperty(required = true, value = "")
   @NotNull(message = "The field birthDate is required")
-  @Pattern(
-      regexp = "^\\d{2}-\\d{2}-\\d{4}$",
-      message =
-          "The field birthDate is invalid. The field birthDate should be in format DD-MM-YYYY")
+  @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-mm-yyyy")
   public Date getBirthdate() {
     return birthdate;
   }
@@ -204,7 +202,7 @@ public class Customer {
   @ApiModelProperty(required = true, value = "")
   @NotNull(message = "The field mobile number is required")
   @Pattern(
-      regexp = "/[2-9]{2}\\d{8}/",
+      regexp = "[0-9]*",
       message =
           "The field mobile number is invalid. The field mbile number should be numebrs with maximum 10 digits")
   public String getMobileNumber() {
